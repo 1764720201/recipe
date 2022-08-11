@@ -1,0 +1,51 @@
+{
+  "id": "3557435",
+  "name": "食谱",
+  "font_family": "iconfont",
+  "css_prefix_text": "van-icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1503737",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "6606717",
+      "name": "图文",
+      "font_class": "tuwen",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "1271742",
+      "name": "消息",
+      "font_class": "message",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "3905292",
+      "name": "通知",
+      "font_class": "inform",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "9855911",
+      "name": "收藏",
+      "font_class": "collect",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "30178398",
+      "name": "点赞",
+      "font_class": "praise",
+      "unicode": "100da",
+      "unicode_decimal": 65754
+    }
+  ]
+}

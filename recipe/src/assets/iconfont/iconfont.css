@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3557435 */
+  src: url('iconfont.woff2?t=1659193823604') format('woff2'),
+       url('iconfont.woff?t=1659193823604') format('woff'),
+       url('iconfont.ttf?t=1659193823604') format('truetype'),
+       url('iconfont.svg?t=1659193823604#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.van-icon-shipin:before {
+  content: "\e64a";
+}
+
+.van-icon-tuwen:before {
+  content: "\e62f";
+}
+
+.van-icon-message:before {
+  content: "\e646";
+}
+
+.van-icon-inform:before {
+  content: "\e601";
+}
+
+.van-icon-collect:before {
+  content: "\e613";
+}
+
+.van-icon-praise:before {
+  content: "\100da";
+}
+
