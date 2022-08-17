@@ -1,7 +1,7 @@
 <template>
   <div class="more-delicious">
     <div class="title" @click="refRoad">
-      <span>更多美味</span>
+      <span>为你推荐</span>
       <div class="reflash">换一换 <img src="./images/刷新.png" /></div>
     </div>
     <div
@@ -50,7 +50,7 @@ const randomNumber = new Set([
 
 <style lang="less" scoped>
 .more-delicious {
-  margin-top: 30px;
+  margin-top: -75px;
   width: 100%;
   padding: 0 0 120px 0;
   .title {
@@ -61,11 +61,13 @@ const randomNumber = new Set([
     span {
       font-size: 48px;
       margin-left: 50px;
+      font-weight: 900;
     }
     .reflash {
       display: flex;
       height: 60px;
       align-items: center;
+      color: rgb(109, 109, 109);
       img {
         width: 50px;
         margin-left: 30px;

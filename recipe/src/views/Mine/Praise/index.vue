@@ -1,5 +1,4 @@
 <template>
-  <div></div>
   <Love :list="praiseList"></Love>
 </template>
 <script setup lang="ts">

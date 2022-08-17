@@ -16,27 +16,33 @@
         <Praise v-if="state.showRouter"></Praise>
       </div>
       <div class="process">
-        <div class="cooking-time">
-          <van-icon name="clock-o" />{{ detail.cookingtime }}
-        </div>
-        <div class="people-num">
-          <van-icon name="friends-o" />{{ detail.peoplenum }}
-        </div>
+        <div><van-icon name="clock-o" />{{ detail.cookingtime }}</div>
+        <div><van-icon name="friends-o" />{{ detail.peoplenum }}</div>
         <div class="tag"><van-icon name="passed" />{{ detail.tag }}</div>
       </div>
       <div class="main">
-        <div class="content">{{ detail.content }}</div>
-        <div class="material">
-          <van-icon name="notes-o" />
-          <div v-for="(item, index) in detail.material" :key="index">
-            <span class="mount">{{ item.amount }}</span
-            ><span>{{ item.mname }}</span
-            >、
-          </div>
+        <div class="content">{{ content }}</div>
+        <div class="ingredient">用料</div>
+        <div
+          v-for="(item, index) in detail.material"
+          :key="index"
+          class="material"
+        >
+          <van-cell-group>
+            <van-cell>
+              <div class="mount">
+                <p>{{ item.mname }}</p>
+                <p>{{ item.amount }}</p>
+              </div>
+            </van-cell>
+          </van-cell-group>
         </div>
         <div class="step" v-for="(step, index) in detail.process" :key="index">
-          <div class="step-img"><img :src="step.pic" /></div>
-          <span>{{ step.pcontent }}</span>
+          <div class="step-num">步骤 {{ index + 1 }}</div>
+          <div class="step-pic">
+            <div><img :src="step.pic" /></div>
+            <span>{{ step.pcontent }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -70,21 +76,20 @@ const backSearch = () => {
 onMounted(() => {
   store.recipe.recipeDetail(route.query.foodId as unknown as number);
 });
-const { detail } = storeToRefs(store.recipe);
+const { detail, content } = storeToRefs(store.recipe);
+console.log(detail.value.content);
 </script>
 
 <style lang="less" scoped>
-.body-img {
-  background-image: url("./image/bac.jpeg");
-}
 .title {
   display: flex;
   width: 100%;
   justify-content: space-around;
-  height: 60px;
+  height: 90px;
   align-items: center;
   font-size: 50px;
   font-weight: 900;
+  margin-bottom: -50px;
   img {
     width: 80px;
     height: 80px;
@@ -101,12 +106,14 @@ const { detail } = storeToRefs(store.recipe);
 :deep(.van-icon) {
   font-size: 60px;
 }
+:deep(.van-cell, .van-cell-group) {
+  width: 90vw;
+}
 .food-detail {
   width: 100%;
   position: relative;
 
   .process {
-    margin-top: 10px;
     margin-left: 35px;
     width: 95%;
     display: flex;
@@ -132,8 +139,15 @@ const { detail } = storeToRefs(store.recipe);
     align-items: center;
     justify-content: space-between;
     .content {
-      color: rgb(235, 110, 21);
+      font-size: 35px;
       text-indent: 2em;
+    }
+    .ingredient {
+      position: relative;
+      right: 280px;
+      top: 40px;
+      font-size: 40px;
+      font-weight: 900;
     }
     .material {
       width: 100%;
@@ -141,28 +155,40 @@ const { detail } = storeToRefs(store.recipe);
       flex-wrap: wrap;
       margin-top: 50px;
       .mount {
-        color: orangered;
-        padding: 0 10px;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        font-size: 30px;
       }
     }
     .step {
       display: flex;
-      width: 80%;
-      margin-left: -120px;
-      height: 250px;
-      background-color: rgb(176, 218, 231);
+      width: 100%;
       margin-top: 50px;
-      align-items: center;
-      border-radius: 30px;
-      &-img {
-        flex-shrink: 1;
-        img {
-          width: 200px;
-          height: 200px;
-          border-radius: 30px;
-        }
+      flex-direction: column;
+      position: relative;
+
+      .step-num {
+        font-size: 40px;
+        font-weight: 900;
+        margin-bottom: 20px;
+      }
+      .step-pic {
+        text-align: center;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
       }
       span {
+        top: 80px;
+        left: 70px;
+        width: 75%;
+        color: #fff;
+        font-weight: 700;
+        font-size: 40px;
+        position: absolute;
         flex-shrink: 3;
         margin-left: 20px;
         overflow: hidden;

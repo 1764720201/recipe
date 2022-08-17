@@ -5,17 +5,25 @@ export type UserInfo = {
   password: string;
   avatarUrl?: string;
 };
+
+export type GetReply = {
+  id: number;
+  reply: string;
+  replyId?: number;
+  user: Author;
+};
 export interface CommentList {
   id: number;
   content: string;
   createTime: string;
   author: Author;
+  replyCount?: number;
 }
 
-interface Author {
+export interface Author {
   id: number;
   name: string;
-  avatarUrl: string;
+  avatarUrl?: string;
 }
 export type Collect = {
   foodId: string;
@@ -30,3 +38,38 @@ export type CollectList = {
   updateAt: string;
   user_id: number;
 };
+
+export interface ReplyList {
+  id: number;
+  content: string;
+  createTime?: string;
+  author: Author;
+  replys: Reply[];
+}
+export type PersonReply = {
+  content: string;
+  createAt: string;
+  id: number;
+  replys: Reply[];
+  user_id: number;
+};
+
+interface User {
+  id: number;
+  name: string;
+  avatarUrl?: string;
+}
+
+export type PersonComment = {
+  id: number;
+  user_id: number;
+  content: string;
+  createAt: string;
+  avatarUrl?: string;
+};
+export interface Reply {
+  id: number;
+  user: User;
+  reply: string;
+  replyId?: any;
+}

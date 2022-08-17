@@ -5,8 +5,10 @@
 import useStore from "./stores";
 const store = useStore();
 onMounted(() => {
-  store.user.getUserInfo();
-  store.collect.getCollectList(Number(store.user.userId));
+  if (store.user.token) {
+    store.user.getUserInfo();
+    store.collect.getCollectList(Number(store.user.userId));
+  }
 });
 </script>
 
@@ -16,6 +18,11 @@ body,
 #app {
   width: 100%;
   height: 100%;
+  overflow: visible;
+  -webkit-overflow-scrolling: touch;
+}
+body {
+  position: relative;
 }
 .icon {
   width: 1em;

@@ -1,25 +1,10 @@
 <template>
   <div class="header">
-    <div class="position">
-      <span>浙江</span>
-      <van-icon name="arrow-down" color="#fff" />
-    </div>
     <div class="search">
       <form action="/">
-        <van-search
-          class="search-input"
-          v-model="value"
-          size="80px"
-          clearable
-          placeholder="请输入食物名称"
-          shape="round"
-          background="none"
-        />
+        <van-search v-model="value" placeholder="请输入食谱" />
       </form>
       <span @click="goSearch()">搜索</span>
-    </div>
-    <div class="qr-code">
-      <van-icon name="scan" color="#fff" />
     </div>
   </div>
 </template>
@@ -43,32 +28,26 @@ const goSearch = () => {
 
 <style lang="less" scoped>
 .header {
-  height: 80px;
+  height: 100px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   position: absolute;
-  .position {
-    width: 200px;
-    height: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
-    span {
-      color: #fff;
-    }
-  }
+  border-radius: 50px;
   .search {
     display: flex;
-    width: 500px;
+    width: 700px;
     height: 100%;
     justify-content: space-evenly;
     align-items: center;
     span {
       color: #fff;
-      font-size: 15px;
+      font-size: 33px;
     }
+  }
+  :deep(.van-search) {
+    width: 600px;
   }
   :deep(.search-input) {
     height: 60px;
@@ -77,6 +56,14 @@ const goSearch = () => {
   }
   :deep(.van-field__control) {
     height: 40px;
+  }
+  :deep(.van-search__field) {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+  }
+  :deep(.van-icon-search) {
+    font-size: 40px;
   }
 }
 </style>

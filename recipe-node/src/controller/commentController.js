@@ -7,7 +7,7 @@ class CommentController {
     ctx.body = result;
   }
   async detail(ctx, next) {
-    const commentId = ctx.params.commentId;
+    const { commentId } = ctx.params;
     const result = await commentService.getCommentById(commentId);
     ctx.body = result;
   }
@@ -25,6 +25,11 @@ class CommentController {
   async deleteComment(ctx, next) {
     const { commentId } = ctx.params;
     const result = await commentService.delete(commentId);
+    ctx.body = result;
+  }
+  async comment(ctx, next) {
+    const { userId } = ctx.params;
+    const result = await commentService.getCommentByUserId(userId);
     ctx.body = result;
   }
 }

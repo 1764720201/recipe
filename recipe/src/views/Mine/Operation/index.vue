@@ -35,14 +35,24 @@ const store = useStore();
 const route = useRoute();
 const router = useRouter();
 const goCollection = () => {
-  store.collect.getCollectList(store.user.userId!).then(() => {
-    router.push("/mine/collection");
-  });
+  store.collect
+    .getCollectList(store.user.userId!)
+    .then(() => {
+      router.push("/mine/collection");
+    })
+    .catch(() => {
+      router.push("/mine/collection");
+    });
 };
 const goPraise = () => {
-  store.collect.getPraiseList(store.user.userId!).then(() => {
-    router.push("/mine/praise");
-  });
+  store.collect
+    .getPraiseList(store.user.userId!)
+    .then(() => {
+      router.push("/mine/praise");
+    })
+    .catch(() => {
+      router.push("/mine/praise");
+    });
 };
 </script>
 

@@ -1,23 +1,22 @@
 <template>
-  <van-empty
-    image="/images/空状态.png"
-    image-size="80"
-    description="什么都没有"
-    v-if="!list[0]"
-  />
+  <NotLogin v-if="!userId"></NotLogin>
+  <Nothing v-if="userId && !list[0]"></Nothing>
   <div class="collectionList" v-else>
     <div v-for="item in list" :key="item.food_id" class="collection">
       <img :src="item.img_url" @click="goDetail(item.food_id)" />
       <div class="info">
-        <span class="food-name">{{ item.food_name }}</span
-        ><span>{{ dayjs(item.createAt).format("YYYY-MM-DD HH:mm") }}</span>
+        <span class="food-name">{{ item.food_name }}</span>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import dayjs from "dayjs";
+import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import useStore from "@/stores";
+import NotLogin from "./NotLogin/index.vue";
+import Nothing from "./Nothing/index.vue";
+const store = useStore();
 type List = {
   createAt: string;
   food_id: string;
@@ -34,17 +33,19 @@ const goDetail = (foodId: string) => {
     query: { foodId },
   });
 };
+
+const { userId } = storeToRefs(store.user);
 </script>
 
 <style lang="less" scoped>
 .collectionList {
-  padding: 50px 0 200px 0;
+  padding-bottom: 200px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 38px;
   .collection {
-    height: 450px;
+    margin-left: 30px;
+    height: 400px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -56,10 +57,15 @@ const goDetail = (foodId: string) => {
       padding: 20px;
     }
     .info {
+      width: 100%;
+      justify-content: center;
+      height: 50px;
+      align-items: center;
       display: flex;
-      flex-direction: column;
+
       .food-name {
-        margin-bottom: 10px;
+        margin-top: -20px;
+        font-weight: 700;
         font-size: 40px;
         overflow: hidden;
         display: -webkit-box;

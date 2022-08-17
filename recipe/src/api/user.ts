@@ -34,3 +34,9 @@ export const reqGetAllComment = (offset: number, size: number) =>
     url: `/recipe/comment?offset=${offset}&size=${size}`,
     method: "GET",
   });
+export const reqGetPersonComment = (userId: number) =>
+  server({ url: `/recipe/comment/${userId}/user`, method: "GET" });
+export const reqReply = (commentId: number, reply: string) =>
+  server({ url: "/recipe/reply", method: "POST", data: { commentId, reply } });
+export const reqGetReply = (commentId: number) =>
+  server({ url: `/recipe/reply?commentId=${commentId}`, method: "GET" });

@@ -12,10 +12,13 @@ const {
   list,
   update,
   deleteComment,
+  comment,
 } = require("../controller/commentController.js");
-commentRouter.post("/", verifyAuth, create);
+
 commentRouter.get("/", list);
 commentRouter.get("/:commentId", detail);
+commentRouter.get("/:userId/user", verifyAuth, comment);
+commentRouter.post("/", verifyAuth, create);
 commentRouter.patch("/:commentId", verifyAuth, verifyPermission, update);
 commentRouter.delete(
   "/:commentId",

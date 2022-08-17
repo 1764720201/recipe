@@ -1,7 +1,6 @@
 const connection = require("../app/database");
 class CollectService {
   async createCollect(userId, foodName, foodId, imgUrl, tablename) {
-    console.log(userId, foodId, foodName, imgUrl, tablename);
     const statement = `REPLACE INTO ${tablename} (user_id,food_id,food_name,img_url) VALUES(?,?,?,?)`;
     const [result] = await connection.execute(statement, [
       userId,

@@ -15,6 +15,7 @@
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const route = useRoute();
+
 interface TabbarList {
   id: number;
   iconName: string;
@@ -39,9 +40,9 @@ const tabbarList = reactive<TabbarList[]>([
   },
   {
     id: 3,
-    iconName: "sign",
-    title: "厨房",
-    path: "/kitchen",
+    iconName: "chat-o",
+    title: "消息",
+    path: "/message",
   },
   {
     id: 4,

@@ -81,8 +81,9 @@ const imagesList = reactive<Goods[]>([
   },
   {
     id: 10,
-    title: "全部",
-    imgUrl: "./images/分类/全部.png",
+    title: "场景",
+    imgUrl: "./images/分类/场景.png",
+    classid: 561,
   },
 ]);
 </script>
@@ -94,7 +95,7 @@ const imagesList = reactive<Goods[]>([
   justify-content: center;
   .classify {
     position: relative;
-    top: -70px;
+    top: -100px;
     height: 400px;
     width: 90%;
     background-color: #fff;
