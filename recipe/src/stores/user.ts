@@ -6,14 +6,17 @@ import {
   reqGetAllComment,
   reqGetReply,
   reqGetPersonComment,
+  reqGetComment,
+  reqMyReply,
 } from "./../api/user";
 import type {
   CommentList,
   UserInfo,
-  ReplyList,
   PersonComment,
-  GetReply,
   PersonReply,
+  GetReply,
+  ReplyList,
+  MyReply,
 } from "@/types/user";
 import { defineStore } from "pinia";
 export const useUser = defineStore({
@@ -25,8 +28,8 @@ export const useUser = defineStore({
     commentList: <CommentList[]>[],
     personCommentList: <PersonComment[]>[],
     personReplyList: <PersonReply[]>[],
-    // replyList: <ReplyList>{},
-    // replyArr: <ReplyList[]>[],
+    replyArr: <ReplyList[]>[],
+    myReplyList: <MyReply[]>[],
   }),
   actions: {
     async register(userInfo: UserInfo) {
@@ -41,6 +44,16 @@ export const useUser = defineStore({
       } else {
         return Promise.reject(new Error("请输入正确的账号和密码"));
       }
+    },
+    async getReply(commentId: number) {
+      let result: any = await reqGetComment(commentId);
+      this.replyArr.push(result);
+      this.replyArr.forEach((replyList: ReplyList) => {
+        replyList.replys.forEach(async (reply: GetReply) => {
+          let result: any = await reqGetAvatar(reply.user.id);
+          reply.user.avatarUrl = window.URL.createObjectURL(result);
+        });
+      });
     },
     async getUserInfo() {
       let result: any = await reqUserInfo();
@@ -71,7 +84,8 @@ export const useUser = defineStore({
     },
     async getPersonReply(userId: number) {
       let result: any = await reqGetPersonComment(userId);
-      result.forEach(async (personComment: PersonReply) => {
+      this.personReplyList = result.reverse();
+      this.personReplyList.forEach(async (personComment: PersonReply) => {
         let result2: any = await reqGetReply(personComment.id);
         personComment.replys = result2;
         personComment.replys.forEach(async (replys) => {
@@ -81,7 +95,10 @@ export const useUser = defineStore({
           }
         });
       });
-      this.personReplyList = result.reverse();
+    },
+    async getMyReply() {
+      let result: any = await reqMyReply();
+      this.myReplyList = result;
     },
   },
   getters: {

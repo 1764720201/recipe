@@ -1,6 +1,6 @@
 <template>
   <div class="activity">
-    <Title><p>热门活动</p></Title>
+    <p>热门活动</p>
     <swiper class="mySwiper" :slidesPerView="1.1" :spaceBetween="15">
       <swiper-slide v-for="item in activityList" :key="item.id">
         <img :src="item.imgUrl" />
@@ -16,7 +16,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import Title from "@/components/Title/index.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 interface Activity {
@@ -49,11 +48,11 @@ const activityList = reactive<Activity[]>([
   width: 100%;
   height: 450px;
   position: relative;
-  top: -50px;
   p {
     font-size: 45px;
     margin-left: 35px;
     font-weight: 400;
+    margin-bottom: 50px;
   }
   .footer {
     display: flex;

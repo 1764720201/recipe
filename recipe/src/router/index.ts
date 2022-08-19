@@ -24,7 +24,6 @@ const router = createRouter({
       name: "register",
       component: () => import("../views/Register/index.vue"),
     },
-
     {
       path: "/category",
       name: "category",
@@ -35,10 +34,34 @@ const router = createRouter({
       name: "messageCenter",
       component: () => import("../views/Mine/Header/MessageCenter/index.vue"),
     },
+
+    {
+      path: "/collect",
+      name: "collect",
+      component: () =>
+        import("../views/Mine/Header/MessageCenter/Collect/index.vue"),
+    },
+    {
+      path: "/praises",
+      name: "praises",
+      component: () =>
+        import("../views/Mine/Header/MessageCenter/Praise/index.vue"),
+    },
+    {
+      path: "/reply",
+      name: "reply",
+      component: () =>
+        import("../views/Mine/Header/MessageCenter/Reply/index.vue"),
+    },
     {
       path: "/detail",
       name: "detail",
       component: () => import("../views/FoodDetail/index.vue"),
+    },
+    {
+      path: "/cooking",
+      name: "cooking",
+      component: () => import("../views/Cooking/index.vue"),
     },
     {
       path: "/search",
@@ -49,6 +72,11 @@ const router = createRouter({
       path: "/message",
       name: "message",
       component: () => import("../views/Message/index.vue"),
+    },
+    {
+      path: "/option",
+      name: "option",
+      component: () => import("../views/Mine/Option/index.vue"),
     },
     {
       path: "/mine",
@@ -72,11 +100,7 @@ const router = createRouter({
         },
       ],
     },
-    {
-      path: "/equipment",
-      name: "equipment",
-      component: () => import("../views/Kitchen/Equipment/index.vue"),
-    },
+
     {
       path: "/home",
       redirect: "/",

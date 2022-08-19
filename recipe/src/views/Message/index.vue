@@ -6,8 +6,8 @@
         <keep-alive>
           <component
             :is="index.conName"
-            v-if="show"
             class="animate__animated animate__lightSpeedInLeft"
+            v-show="state.showRouter"
           ></component>
         </keep-alive>
       </van-tab>
@@ -29,10 +29,7 @@ onMounted(() => {
   }
 });
 const { userId } = storeToRefs(store.user);
-const show = ref(false);
-setTimeout(() => {
-  show.value = true;
-}, 700);
+
 const components = reactive([
   {
     title: "收到的回复",
@@ -43,6 +40,9 @@ const components = reactive([
     conName: markRaw(MyComment),
   },
 ]);
+const state = reactive({
+  showRouter: true,
+});
 const active = ref(0);
 </script>
 

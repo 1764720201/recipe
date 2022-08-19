@@ -8,7 +8,6 @@ import Components from "unplugin-vue-components/vite";
 import { VantResolver } from "unplugin-vue-components/resolvers";
 import AutoImport from "unplugin-auto-import/vite";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
@@ -17,7 +16,7 @@ export default defineConfig({
       resolvers: [VantResolver()],
     }),
     AutoImport({
-      imports: ["vue"],
+      imports: ["vue", "vue-router"],
       dts: "src/auto-import.d.ts",
     }),
   ],
@@ -44,10 +43,6 @@ export default defineConfig({
     proxy: {
       "/jisuapi": {
         target: "https://way.jd.com/",
-        changeOrigin: true,
-      },
-      "/api": {
-        target: "http://baobab.kaiyanapp.com/",
         changeOrigin: true,
       },
       "/recipe": {

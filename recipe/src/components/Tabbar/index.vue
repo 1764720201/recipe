@@ -35,7 +35,7 @@ const tabbarList = reactive<TabbarList[]>([
   {
     id: 2,
     iconName: "comment-circle-o",
-    title: "摄区",
+    title: "社区",
     path: "/community",
   },
   {

@@ -1,5 +1,5 @@
 import server from "./request";
-import type { UserInfo } from "@/types/user";
+import type { UserInfo, RevertInfo } from "@/types/user";
 export const reqRegister = (userInfo: UserInfo) =>
   server({
     url: "/recipe/user/register",
@@ -40,3 +40,27 @@ export const reqReply = (commentId: number, reply: string) =>
   server({ url: "/recipe/reply", method: "POST", data: { commentId, reply } });
 export const reqGetReply = (commentId: number) =>
   server({ url: `/recipe/reply?commentId=${commentId}`, method: "GET" });
+export const reqGetComment = (commentId: number) =>
+  server({
+    url: `/recipe/comment/${commentId}`,
+    method: "GET",
+  });
+export const reqDeleteComment = (commentId: number) =>
+  server({
+    url: `/recipe/comment/${commentId}`,
+    method: "DELETE",
+  });
+export const reqMyReply = () =>
+  server({
+    url: "/recipe/reply/person",
+    method: "GET",
+  });
+export const reqRevert = (replyId: number, commentId: number, reply: string) =>
+  server({
+    url: `/recipe/reply/${replyId}/revert`,
+    method: "POST",
+    data: {
+      commentId,
+      reply,
+    },
+  });

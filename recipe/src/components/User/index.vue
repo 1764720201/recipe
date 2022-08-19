@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from "vue-router";
 import useStore from "@/stores";
-import { Toast } from "vant";
+import { Dialog, Toast } from "vant";
 export type UserInfo = {
   id?: number;
   phone: string;
@@ -69,7 +69,20 @@ const onSubmit = async () => {
     }
   } else {
     try {
-      await store.user.register(userInfo).then(() => router.push("/login"));
+      await store.user.register(userInfo).then(() =>
+        Dialog.confirm({
+          message: "你是否要直接登录",
+        })
+          .then(async () => {
+            await store.user
+              .login(userInfo)
+              .then(() => store.user.getUserInfo())
+              .then(() => router.push("./mine"));
+          })
+          .catch(() => {
+            router.push("login");
+          })
+      );
     } catch (error) {
       Toast("输入有误");
     }
@@ -128,6 +141,9 @@ const onSubmit = async () => {
       width: 120px;
       font-size: 30px;
       font-weight: 700;
+    }
+    :deep(.van-field__body) {
+      font-size: 30px;
     }
     :deep(.van-button) {
       width: 450px;

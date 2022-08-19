@@ -8,6 +8,7 @@ onMounted(() => {
   if (store.user.token) {
     store.user.getUserInfo();
     store.collect.getCollectList(Number(store.user.userId));
+    store.collect.getPraiseList(Number(store.user.userId));
   }
 });
 </script>

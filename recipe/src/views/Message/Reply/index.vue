@@ -11,13 +11,18 @@
         >
           <div class="content">
             <div class="replyList">
-              <img :src="reply.user.avatarUrl" />
+              <img
+                src="/images/默认头像.png"
+                alt=""
+                v-if="!reply.user.avatarUrl"
+              />
+              <img :src="reply.user.avatarUrl" v-else />
               <div class="replyMsg">
                 <span> {{ reply.user.name }}</span>
                 <span>评论了你的回复</span>
               </div>
             </div>
-            <div class="reply-btn">
+            <div class="reply-btn" @click="revert(reply.id, replyList.id)">
               <span>回复:{{ reply.reply }}</span>
               <div class="btn">
                 <van-icon name="comment-o" />
@@ -31,6 +36,16 @@
           </div>
         </div>
       </div>
+      <van-dialog
+        v-model:show="show"
+        title="请输入回复的内容"
+        show-cancel-button
+        @confirm="revertMessage"
+        :close-on-click-overlay="true"
+        width="200px"
+      >
+        <van-field v-model="revertContent" placeholder="请输入回复的内容" />
+      </van-dialog>
     </div>
   </div>
 </template>
@@ -39,16 +54,40 @@ import useStore from "@/stores";
 import { storeToRefs } from "pinia";
 import NotLogin from "@/components/Love/NotLogin/index.vue";
 import Nothing from "@/components/Love/Nothing/index.vue";
+import { Dialog, Toast } from "vant";
+import { reqRevert } from "@/api/user";
+const VanDialog = Dialog.Component;
+const commentId = ref(0);
+const replyId = ref(0);
+const revertContent = ref("");
 const store = useStore();
+const show = ref(false);
 const { personReplyList, userId, user } = storeToRefs(store.user);
+const revert = (replyid: number, commentid: number) => {
+  commentId.value = commentid;
+  replyId.value = replyid;
+  show.value = true;
+};
+const revertMessage = async () => {
+  await reqRevert(replyId.value, commentId.value, revertContent.value);
+  Toast("回复成功");
+};
 </script>
 
 <style lang="less" scoped>
+:deep(.van-popup) {
+  position: absolute;
+  top: 300px;
+}
+.reply {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
 .content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
   padding: 30px 0;
   .replyList {
     width: 100%;

@@ -2,7 +2,7 @@
   <div class="header">
     <div class="area">
       <div class="content">
-        <span class="title">摄区</span>
+        <span class="title">社区</span>
         <span class="publish" @click="toShow">发布</span>
       </div>
     </div>

@@ -14,7 +14,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { Goods } from "@/components/Swiper/index.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -23,6 +22,12 @@ const goCategory = (classid: number) => {
     path: "/category",
     query: { classid },
   });
+};
+type Goods = {
+  id: number;
+  title: string;
+  imgUrl: string;
+  classid: number;
 };
 const imagesList = reactive<Goods[]>([
   {

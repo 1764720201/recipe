@@ -1,12 +1,13 @@
 <template>
-  <Cell :list="opinionList"></Cell>
+  <Cell :list="opinionList" @click="goOption"></Cell>
   <div class="record">
-    <Cell :list="recordList"></Cell>
+    <Cell :list="recordList" @click="goOption"></Cell>
   </div>
 </template>
 <script setup lang="ts">
 import type { List } from "@/components/Cell/index.vue";
 import Cell from "@/components/Cell/index.vue";
+const router = useRouter();
 const opinionList = reactive<List[]>([
   {
     id: 1,
@@ -36,6 +37,9 @@ const recordList = reactive<List[]>([
     title: "设备共享",
   },
 ]);
+const goOption = () => {
+  router.push("/option");
+};
 </script>
 
 <style lang="less" scoped>

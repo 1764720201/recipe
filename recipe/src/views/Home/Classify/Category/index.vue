@@ -69,7 +69,7 @@ onMounted(() => {
   store.recipe.recipeClass(Number(route.query.classid));
 });
 store.recipe.recipeList(Number(route.query.classid));
-const { category, classifyList, list, utensilList } = storeToRefs(store.recipe);
+const { category, classifyList, list } = storeToRefs(store.recipe);
 let className = ref();
 //避免数据接收不到 后期再改
 setTimeout(() => {

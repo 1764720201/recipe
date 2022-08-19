@@ -44,6 +44,7 @@ const { userId } = storeToRefs(store.user);
   display: flex;
   flex-wrap: wrap;
   .collection {
+    width: 44%;
     margin-left: 30px;
     height: 400px;
     background-color: #fff;

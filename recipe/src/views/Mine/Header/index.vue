@@ -2,9 +2,19 @@
   <div class="header">
     <div class="set">
       <img src="./images/铃铛.png" @click="goMessageCenter" />
-      <img src="./images/设置.png" @click="set" />
+      <van-popover
+        v-model:show="showPopover"
+        :actions="actions"
+        @select="onSelect"
+        placement="bottom-end"
+        :show-arrow="false"
+      >
+        <template #reference>
+          <img src="./images/设置.png" @click="set" />
+        </template>
+      </van-popover>
     </div>
-    <van-popup
+    <!-- <van-popup
       v-model:show="show"
       closeable
       position="right"
@@ -27,16 +37,17 @@
           >退出登录</van-button
         >
       </div>
-    </van-popup>
+    </van-popup> -->
+
     <div class="portrait">
       <img
-        src="/images/默认头像.jpeg"
+        src="/images/默认头像.png"
         v-show="!avatarUrl && !userId"
         @click="login"
       />
       <van-uploader :after-read="afterRead" v-if="userId">
         <img :src="avatarUrl" v-show="avatarUrl" />
-        <img src="/images/默认头像.jpeg" v-show="!avatarUrl" />
+        <img src="/images/默认头像.png" v-show="!avatarUrl" />
       </van-uploader>
       <span v-if="user.name">{{ user.name }}</span>
       <span v-else>未登录</span>
@@ -48,6 +59,17 @@ import { useRouter } from "vue-router";
 import useStore from "@/stores";
 import { storeToRefs } from "pinia";
 import { reqUploadAvatar } from "@/api/user";
+const showPopover = ref(false);
+
+const actions = [{ text: "退出登录" }, { text: "切换账号" }];
+const onSelect = (action: { text: string }) => {
+  console.log(action.text);
+  if (action.text == "退出登录") {
+    logout();
+  } else {
+    login();
+  }
+};
 const reload = inject<Function>("reload");
 const refRoad = (): void => {
   (reload as Function)();

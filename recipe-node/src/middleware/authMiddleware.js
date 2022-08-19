@@ -34,7 +34,6 @@ const verifyAuth = async (ctx, next) => {
     const result = jwt.verify(token, PUBLIC_KEY, {
       algorithms: ["RS256"],
     });
-
     ctx.user = result;
     await next();
   } catch (err) {

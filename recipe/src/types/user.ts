@@ -73,3 +73,14 @@ export interface Reply {
   reply: string;
   replyId?: any;
 }
+export type MyReply = {
+  comment_id: number;
+  id: number;
+  reply: string;
+  reply_id?: number;
+  user_id: number;
+};
+export type RevertInfo = {
+  commentId: number;
+  reply: string;
+};

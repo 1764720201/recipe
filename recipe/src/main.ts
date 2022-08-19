@@ -4,7 +4,8 @@ import { Lazyload } from "vant";
 import "@/assets/iconfont/iconfont.css";
 import "@/assets/iconfont/iconfont.js";
 import "animate.css";
-
+import "vant/es/dialog/style";
+import "vant/es/toast/style";
 import "./index.css";
 
 import App from "./App.vue";

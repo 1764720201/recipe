@@ -21,7 +21,7 @@
         <div class="tag"><van-icon name="passed" />{{ detail.tag }}</div>
       </div>
       <div class="main">
-        <div class="content">{{ content }}</div>
+        <div class="content">{{ detail.content }}</div>
         <div class="ingredient">用料</div>
         <div
           v-for="(item, index) in detail.material"
@@ -76,8 +76,7 @@ const backSearch = () => {
 onMounted(() => {
   store.recipe.recipeDetail(route.query.foodId as unknown as number);
 });
-const { detail, content } = storeToRefs(store.recipe);
-console.log(detail.value.content);
+const { detail } = storeToRefs(store.recipe);
 </script>
 
 <style lang="less" scoped>

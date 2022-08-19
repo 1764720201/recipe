@@ -20,6 +20,7 @@
       />
       <van-field
         v-model="userInfo.password"
+        maxlength="15"
         type="password"
         show-error
         name="密码"
@@ -29,6 +30,7 @@
       />
       <van-field
         v-model="confirmPassword"
+        maxlength="15"
         type="password"
         show-error
         name="密码"

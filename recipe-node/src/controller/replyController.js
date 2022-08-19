@@ -29,5 +29,10 @@ class ReplyController {
     const result = await replyService.list(commentId);
     ctx.body = result;
   }
+  async replyList(ctx, next) {
+    const { id } = ctx.user;
+    const result = await replyService.replyList(id);
+    ctx.body = result;
+  }
 }
 module.exports = new ReplyController();

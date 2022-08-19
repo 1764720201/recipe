@@ -1,7 +1,9 @@
 <template>
   <Header></Header>
   <Activity></Activity>
-  <Discussion v-if="state.showRouter"></Discussion>
+  <keep-alive>
+    <Discussion v-if="state.showRouter"></Discussion>
+  </keep-alive>
   <Tabbar></Tabbar>
 </template>
 <script setup lang="ts">

@@ -18,7 +18,7 @@
       >
         <div class="author">
           <img :src="item.author.avatarUrl" v-if="item.author.avatarUrl" />
-          <img src="/images/默认头像.jpeg" v-else />
+          <img src="/images/默认头像.png" v-else />
           <div class="message" @click="reply(item.id)">
             <div class="name">{{ item.author.name }}</div>
             <div class="comment">{{ item.content }}</div>
@@ -41,7 +41,7 @@
             <van-cell>
               <div class="replyer">
                 <img :src="reply.user.avatarUrl" v-if="reply.user.avatarUrl" />
-                <img src="/images/默认头像.jpeg" v-else />
+                <img src="/images/默认头像.png" v-else />
                 <div class="replyMsg">
                   <div class="reply-name">{{ reply.user.name }}</div>
                   <div class="reply-msg">{{ reply.reply }}</div>

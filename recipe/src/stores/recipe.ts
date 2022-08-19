@@ -23,6 +23,7 @@ export const useRecipe = defineStore({
     },
     async recipeClass(classId: number) {
       let result: any = await reqRecipeClass();
+      console.log(result);
       this.category.list = [];
       return result.result.result.map((value: Result) => {
         if (value.classid == classId) {
